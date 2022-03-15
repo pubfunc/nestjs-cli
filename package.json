@@ -5,8 +5,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc -b tsconfig.build.json",
-    "lint": "eslint 'src/**/*.ts' --fix"
+    "lint": "eslint 'src/**/*.ts' --fix",
+    "prepublish": "npm run build"
   },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "peerDependencies": {
     "@nestjs/common": "^8.0.0",
     "yargs": "^17.3.1"

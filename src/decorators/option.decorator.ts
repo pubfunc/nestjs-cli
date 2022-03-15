@@ -1,6 +1,6 @@
 import { Type } from '@nestjs/common';
-import { CommandRegistry } from 'src/command-registry';
-import { OptionOptions } from 'src/types/command-options';
+import { CommandRegistry } from '../command-registry';
+import { OptionOptions } from '../types/command-options';
 
 export function Option(
   name: string,

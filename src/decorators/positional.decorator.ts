@@ -1,6 +1,6 @@
 import { Type } from '@nestjs/common';
-import { CommandRegistry } from 'src/command-registry';
-import { PositionalOptions } from 'src/types/command-options';
+import { CommandRegistry } from '../command-registry';
+import { PositionalOptions } from '../types/command-options';
 
 export function Positional(
   name: string,
