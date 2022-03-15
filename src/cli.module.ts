@@ -3,6 +3,6 @@ import { CliService } from './cli.service';
 
 @Module({
   providers: [CliService],
-  exports: [CliService],
+  exports: [],
 })
 export class CliModule {}

@@ -1,7 +1,7 @@
 import { ContextIdFactory, NestFactory } from '@nestjs/core';
 import { REQUEST_CONTEXT_ID } from '@nestjs/core/router/request/request-constants';
 import { AppModule } from './app.module';
-import { CliService } from '@pubfunc/nestjs-cli';
+import { CliService, CliModule } from '@pubfunc/nestjs-cli';
 
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);
@@ -14,7 +14,7 @@ async function bootstrap() {
       contextId,
     );
 
-    await (await app.resolve(CliService, contextId)).exec();
+    await (await app.select(CliModule).resolve(CliService, contextId)).exec();
 
     // LOG MEMORY USAGE
     // https://www.valentinog.com/blog/node-usage/
