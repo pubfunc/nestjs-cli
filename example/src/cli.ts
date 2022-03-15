@@ -1,7 +1,7 @@
 import { ContextIdFactory, NestFactory } from '@nestjs/core';
 import { REQUEST_CONTEXT_ID } from '@nestjs/core/router/request/request-constants';
 import { AppModule } from './app.module';
-import { CliService } from './cli.service';
+import { CliService } from '@pubfunc/nestjs-cli';
 
 async function bootstrap() {
   const app = await NestFactory.createApplicationContext(AppModule);

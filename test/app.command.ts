@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { Command, Option, Positional } from '@pubfunc/nestjs-cli';
+import { Command, Option, Positional } from '../src';
 import { AppService } from './app.service';
 
 @Injectable({ scope: Scope.REQUEST })
@@ -25,14 +25,12 @@ export class AppCommand {
     })
     delay: number,
   ) {
-    console.log('executing async debug', argument1, argument2, delay);
-
     await new Promise<void>((resolve, reject) => {
       setTimeout(() => {
         resolve();
-      }, delay);
+      }, 10);
     });
 
-    console.log('completed async debug');
+    return [argument1, argument2, delay];
   }
 }

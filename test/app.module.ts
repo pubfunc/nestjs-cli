@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppCommand } from './app.command';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CliModule } from '@pubfunc/nestjs-cli';
+import { CliModule } from '../src';
 @Module({
   imports: [CliModule],
-  controllers: [AppController],
+  controllers: [],
   providers: [AppService, AppCommand],
 })
 export class AppModule {}

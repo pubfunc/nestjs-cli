@@ -14,7 +14,7 @@ export class CliService {
     private request?: Record<string, unknown>,
   ) {}
 
-  async exec(args = hideBin(process.argv)) {
+  async exec(args = hideBin(process.argv)): Promise<unknown> {
     const cli = this.build();
     return await cli.parseAsync(args);
   }
@@ -25,7 +25,11 @@ export class CliService {
     CommandRegistry.getCommands().forEach((meta) => {
       const handler = async (rawArgs: yargs.ArgumentsCamelCase<any>) => {
         const args = this.resolveArguments(meta, rawArgs);
-        await this.resolveAndExecuteTarget(meta.target, meta.propertyKey, args);
+        return await this.resolveAndExecuteTarget(
+          meta.target,
+          meta.propertyKey,
+          args,
+        );
       };
 
       cli.command(
@@ -70,7 +74,7 @@ export class CliService {
       );
     }
 
-    await instance[propertyKey](...args);
+    return await instance[propertyKey](...args);
   }
 
   resolveArguments(
