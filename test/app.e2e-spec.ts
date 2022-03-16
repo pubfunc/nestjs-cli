@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { AppModule } from './app.module';
-import { CliModule, CliService } from '../src';
+import { YargsModule, YargsService } from '../src';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
-  let cliService: CliService;
+  let cliService: YargsService;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -14,10 +14,12 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
 
-    cliService = await app.select(CliModule).resolve(CliService);
+    cliService = await app.select(YargsModule).resolve(YargsService);
   });
 
   it('runs commands', async () => {
-    await expect(cliService.exec(['debug', 'true'])).rejects.toThrowError();
+    await expect(
+      cliService.exec(['debug', 'someValue', 'true']),
+    ).rejects.toThrowError();
   });
 });

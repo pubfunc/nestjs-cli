@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppCommand } from './app.command';
 import { AppService } from './app.service';
-import { CliModule } from '../src';
+import { YargsModule } from '../src';
 @Module({
-  imports: [CliModule],
+  imports: [YargsModule],
   controllers: [],
   providers: [AppService, AppCommand],
 })

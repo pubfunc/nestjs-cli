@@ -6,21 +6,35 @@ import { CommandRegistry } from './command-registry';
 import { CommandMetadata } from './types/command-options';
 
 @Injectable({ scope: Scope.REQUEST })
-export class CliService {
+export class YargsService {
   constructor(
-    private moduleRef: ModuleRef,
+    private readonly moduleRef: ModuleRef,
     @Inject(REQUEST)
     @Optional()
-    private request?: Record<string, unknown>,
+    private readonly request?: Record<string, unknown>,
   ) {}
 
   async exec(args = hideBin(process.argv)): Promise<unknown> {
     const cli = this.build();
-    return await cli.parseAsync(args);
+
+    return new Promise<void>((resolve, reject) => {
+      try {
+        cli.parseAsync(args, {}, (err, argv, output) => {
+          if (err) reject(err);
+          resolve();
+        });
+      } catch (e) {
+        reject(e);
+      }
+    });
   }
 
   build() {
-    const cli = yargs.scriptName('cli').demandCommand(1).strict();
+    const cli = yargs
+      .scriptName('cli')
+      .demandCommand(1)
+      .recommendCommands()
+      .strict();
 
     CommandRegistry.getCommands().forEach((meta) => {
       const handler = async (rawArgs: yargs.ArgumentsCamelCase<any>) => {

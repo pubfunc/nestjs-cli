@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppCommand } from './app.command';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CliModule } from '@pubfunc/nestjs-cli';
+import { YargsModule } from '@pubfunc/nestjs-yargs';
 @Module({
-  imports: [CliModule],
+  imports: [YargsModule.forRoot()],
   controllers: [AppController],
   providers: [AppService, AppCommand],
 })

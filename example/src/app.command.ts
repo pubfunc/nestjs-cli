@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { Command, Option, Positional } from '@pubfunc/nestjs-cli';
+import { Command, Option, Positional } from '@pubfunc/nestjs-yargs';
 import { AppService } from './app.service';
 
 @Injectable({ scope: Scope.REQUEST })
