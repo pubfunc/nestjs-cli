@@ -3,7 +3,7 @@ import { AppCommand } from './app.command';
 import { AppService } from './app.service';
 import { YargsModule } from '../src';
 @Module({
-  imports: [YargsModule],
+  imports: [YargsModule.forRoot()],
   controllers: [],
   providers: [AppService, AppCommand],
 })

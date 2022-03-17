@@ -8,7 +8,6 @@ export class YargsModule {
       module: YargsModule,
       providers: [YargsService],
       exports: [YargsService],
-      global: true,
     };
   }
 }

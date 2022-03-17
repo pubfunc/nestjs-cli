@@ -1,20 +1,25 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import { AppModule } from './app.module';
+import { INestApplicationContext } from '@nestjs/common';
+import { ContextIdFactory } from '@nestjs/core/helpers';
+import { NestFactory } from '@nestjs/core/nest-factory';
+import { REQUEST_CONTEXT_ID } from 'example/node_modules/@nestjs/core/router/request/request-constants';
 import { YargsModule, YargsService } from '../src';
+import { AppModule } from './app.module';
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication;
+describe('YargsModule (e2e)', () => {
+  let app: INestApplicationContext;
   let cliService: YargsService;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
+  beforeAll(async () => {
+    const app = await NestFactory.createApplicationContext(AppModule, {});
 
-    app = moduleFixture.createNestApplication();
+    const contextId = ContextIdFactory.create();
 
-    cliService = await app.select(YargsModule).resolve(YargsService);
+    app.registerRequestByContextId(
+      { cli: true, [REQUEST_CONTEXT_ID]: contextId },
+      contextId,
+    );
+
+    cliService = await app.select(YargsModule).resolve(YargsService, contextId);
   });
 
   it('runs commands', async () => {

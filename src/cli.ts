@@ -1,10 +1,16 @@
 import { ContextIdFactory, NestFactory } from '@nestjs/core';
 import { REQUEST_CONTEXT_ID } from '@nestjs/core/router/request/request-constants';
-import { AppModule } from './app.module';
-import { YargsService } from '@pubfunc/nestjs-yargs';
+import { Module } from 'example/node_modules/@nestjs/common';
+import { YargsModule } from './yargs.module';
+import { YargsService } from './yargs.service';
+
+@Module({
+  imports: [YargsModule.forRoot()],
+})
+export class YargsCliModule {}
 
 async function bootstrap() {
-  const app = await NestFactory.createApplicationContext(AppModule, {});
+  const app = await NestFactory.createApplicationContext(YargsCliModule, {});
 
   const contextId = ContextIdFactory.create();
 
@@ -20,7 +26,6 @@ async function bootstrap() {
 
     await app.close();
   } catch (error) {
-    console.error(error);
     await app.close();
     process.exit(1);
   }

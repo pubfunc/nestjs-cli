@@ -20,7 +20,12 @@ export class YargsService {
     return new Promise<void>((resolve, reject) => {
       try {
         cli.parseAsync(args, {}, (err, argv, output) => {
-          if (err) reject(err);
+          if (err) {
+            console.error(output);
+            reject(err);
+            return;
+          }
+          console.log(output);
           resolve();
         });
       } catch (e) {

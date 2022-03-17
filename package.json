@@ -1,16 +1,28 @@
 {
   "name": "@pubfunc/nestjs-yargs",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "Create a yargs CLI in NestJS application using decorators.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && tsc -b tsconfig.build.json",
     "lint": "eslint 'src/**/*.ts' --fix",
     "prepublish": "npm run build",
+    "cli": "node -r tsconfig-paths/register -r ts-node/register src/cli.ts",
+    "cli:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register src/cli.ts",
+    "cli:dist": "node dist/src/cli",
     "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pubfunc/nestjs-yargs"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "LICENCE",
+    "README.md"
+  ],
   "peerDependencies": {
     "@nestjs/common": "^8.0.0",
     "yargs": "^17.3.1"
@@ -44,5 +56,8 @@
     "name": "christiaan-lombard",
     "email": "base1.christiaan@gmail.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }
