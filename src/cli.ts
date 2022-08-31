@@ -1,6 +1,6 @@
 import { ContextIdFactory, NestFactory } from '@nestjs/core';
 import { REQUEST_CONTEXT_ID } from '@nestjs/core/router/request/request-constants';
-import { Module } from 'example/node_modules/@nestjs/common';
+import { Module } from '@nestjs/common';
 import { YargsModule } from './yargs.module';
 import { YargsService } from './yargs.service';
 
