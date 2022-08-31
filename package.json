@@ -1,6 +1,6 @@
 {
   "name": "@pubfunc/nestjs-yargs",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Create a yargs CLI in NestJS application using decorators.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,7 +24,7 @@
     "README.md"
   ],
   "peerDependencies": {
-    "@nestjs/common": "^8.0.0 | ^9.0.0",
+    "@nestjs/common": "^8.0.0 || ^9.0.0",
     "yargs": "^17.3.1"
   },
   "devDependencies": {
