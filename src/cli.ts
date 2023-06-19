@@ -19,6 +19,8 @@ async function bootstrap() {
     contextId,
   );
 
+  app.enableShutdownHooks();
+
   const cli = await app.resolve(YargsService, contextId, { strict: false });
 
   try {

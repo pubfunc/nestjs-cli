@@ -17,20 +17,30 @@ export class AppCommand {
       default: true,
     })
     argument2: boolean,
-    @Option('log', {
-      alias: 'l',
+    @Option('option1', {
+      alias: 'o1',
       type: 'number',
       default: 500,
       requiresArg: true,
     })
-    delay: number,
+    option1: number,
+    @Option('option2', {
+      alias: 'o2',
+      type: 'string',
+    })
+    option2: number,
   ) {
-    console.log('executing async debug', argument1, argument2, delay);
+    console.log('executing async debug', {
+      argument1,
+      argument2,
+      option1,
+      option2,
+    });
 
     await new Promise<void>((resolve, reject) => {
       setTimeout(() => {
         resolve();
-      }, delay);
+      }, 100);
     });
 
     console.log('completed async debug');

@@ -102,8 +102,12 @@ export class YargsService {
   ) {
     const args: any[] = [];
 
-    meta.positionals.forEach((posMeta) => {
-      args[posMeta.parameterIndex] = rawArgs[posMeta.options.name] ?? undefined;
+    meta.positionals.forEach((meta) => {
+      args[meta.parameterIndex] = rawArgs[meta.options.name] ?? undefined;
+    });
+
+    meta.optionals.forEach((meta) => {
+      args[meta.parameterIndex] = rawArgs[meta.options.name] ?? undefined;
     });
 
     return args;
